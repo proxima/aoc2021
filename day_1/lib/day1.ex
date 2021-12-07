@@ -1,12 +1,15 @@
 defmodule Day1 do
+  use Application
+
   @moduledoc """
     Day 1: Sonar Sweep
     https://adventofcode.com/2021/day/1
   """
 
-  def main() do
+  def start(_type, _args) do
     IO.inspect(part_one(), label: "Part One")
     IO.inspect(part_two(), label: "Part Two")
+    {:ok, self()}
   end
 
   defp input_stream() do
