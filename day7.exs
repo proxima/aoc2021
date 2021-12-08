@@ -39,7 +39,20 @@ defmodule Day7 do
   end
 
   def part_two() do
-    input_stream()
+    locations = 
+      input_stream()
+      |> Enum.to_list()
+
+    {min, max} = Enum.min_max(locations)
+
+    Enum.map(min..max, fn pivot ->
+      Enum.reduce(locations, 0, fn location, acc ->
+        distance = Kernel.abs(location - pivot)
+        cost = div(distance * (distance + 1), 2)
+        acc + cost
+      end)
+    end)
+    |> Enum.min()
   end
 end
 
